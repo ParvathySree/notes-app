@@ -8,6 +8,12 @@ app.use(bodyParser.json());
 
 app.use('/notes',noteRoutes)
 
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
+
 app.listen(process.env.PORT,()=>{
     console.log(`Server started at port ${process.env.PORT}`)
 }) 
