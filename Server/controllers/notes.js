@@ -44,6 +44,7 @@ const getNotes = async(req,res) => {
 const editNote = async(req,res) => {
     const detail = req.body.detail;
     const id = req.query.params;
+    console.log(detail,)
     try{
         const result = await editNoteModel(detail,id);
         res.status(200).json({

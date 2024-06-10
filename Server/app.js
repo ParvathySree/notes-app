@@ -10,4 +10,4 @@ app.use('/notes',noteRoutes)
 
 app.listen(port,()=>{
     console.log(`Server started at port ${port}`)
-})
+}) 
