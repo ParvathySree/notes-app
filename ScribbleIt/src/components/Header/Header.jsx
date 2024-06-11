@@ -1,9 +1,10 @@
 import React from 'react'
+import './Header.css'
 
 const Header = () => {
   return (
-    <div>
-        Scribble It!
+    <div className='heading'>
+        Notes
     </div>
   )
 }

@@ -1,13 +1,14 @@
 const { Pool } = require('pg');
-require('dotenv').config();
 
-
-const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL,
-})
-
-
-
+    const pool = new Pool(
+        {
+            user:'postgres',
+            password:'postgres',
+            host:'localhost',
+            port:5432,
+            database:'notes',
+        }
+     );
 
 pool.connect((err)=>{
     if (err) {
@@ -22,12 +23,3 @@ pool.connect((err)=>{
     
     
     
-    // const pool = new Pool(
-    //     {
-    //         user:'postgres',
-    //         password:'postgres',
-    //         host:'localhost',
-    //         port:5432,
-    //         database:'notes',
-    //     }
-    //  );

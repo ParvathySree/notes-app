@@ -1,12 +1,19 @@
 import './App.css'
-import Header from './components/Header/Header.jsx'
+import SideBar from './components/SideBar/SideBar'
+import Body from './components/Body/Body'
 
 function App() {
 
   return (
     <>
-      <Header/>
-        
+    <div className='app'>
+    <div className='side-bar'>
+      <SideBar/>
+    </div>
+    <div className='main-body'>
+      <Body/>
+    </div>   
+    </div>
     </>
   )
 }
