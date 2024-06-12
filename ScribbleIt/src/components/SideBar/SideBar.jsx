@@ -7,7 +7,7 @@ const SideBar = () => {
   return (
     <div>
       <div></div>
-      <div>
+      <div className='add-btn'>
         <IconButton className='icon-btn'>
           <AddBoxIcon className='icon add'/>
         </IconButton>

@@ -1,4 +1,12 @@
 .icon-btn{
     color: #000 !important;
-    
+}
+
+.add{
+    padding: 10px;
+}
+
+.add-btn{
+    text-align: center;
+
 }
