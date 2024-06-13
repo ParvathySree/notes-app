@@ -1,17 +1,16 @@
 body{
   margin:0;
   padding:0;
+  background-color: #F6F6F6;
 }
 
 .app{
   display: flex;
-
+  height: 100vh; 
 }
 .side-bar{
-  height: 100vh;
-  width: 5vw;
-  background-color: rgb(240, 235, 208);
+  /* height: 100vh; */
+  width: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.main-body{
-  height: 100vh;
-}
+

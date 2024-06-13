@@ -1,0 +1,12 @@
+.notes-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2em;
+    margin-top: 50px;
+}
+
+.body-con{
+    margin: 50px;
+}

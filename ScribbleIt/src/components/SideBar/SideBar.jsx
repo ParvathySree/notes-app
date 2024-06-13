@@ -1,16 +1,52 @@
-import React from 'react'
-import AddBoxIcon from '@mui/icons-material/AddBox';
+import React, { useState } from 'react'
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import { IconButton } from '@mui/material';
 import './SideBar.css'
+import { useNoteContext } from '../../../src/Contexts/NoteContext';
+import PopUp from '../PopUp/PopUp';
+import axios from 'axios';
+import { API_URL } from '../../assets/constants/constants';
 
 const SideBar = () => {
+  const [open,setOpen] = useState(false);
+  const { fetchNotes } = useNoteContext();
+
+
+  const handleOpen = () => {
+    setOpen(true);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  }
+
+  const addNote = async (note) => {
+    try{
+      const body =  {detail : note}
+      const response = await axios.post(API_URL,body);
+      fetchNotes();
+      handleClose();
+    }
+    catch(error){
+      console.error(error)
+    }
+  }
+
+  const handleAdd = (note) => {
+    addNote(note);
+  }
+
+
   return (
     <div>
       <div></div>
       <div className='add-btn'>
-        <IconButton className='icon-btn'>
-          <AddBoxIcon className='icon add'/>
+        <IconButton className='icon-btn' onClick={handleOpen}>
+          <AddCircleRoundedIcon className='icon add' />
         </IconButton>
+      </div>
+      <div>
+        <PopUp open={open} handleClose={handleClose} title={"Add Note"} desc={"Please enter your note"} mode={"add"} handleAction={handleAdd}/>
       </div>
     </div>
   )

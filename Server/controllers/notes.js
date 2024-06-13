@@ -43,8 +43,7 @@ const getNotes = async(req,res) => {
 
 const editNote = async(req,res) => {
     const detail = req.body.detail;
-    const id = req.query.params;
-    console.log(detail,)
+    const {id} = req.params;
     try{
         const result = await editNoteModel(detail,id);
         res.status(200).json({
@@ -66,9 +65,9 @@ const editNote = async(req,res) => {
 
 
 const deleteNote = async(req,res) => {
-    const id = req.query.params
+    const {id} = req.params
     try{
-        const result = await deleteNoteModel();
+        const result = await deleteNoteModel(id);
         res.status(200).json({
             success : true,
             data : result,
