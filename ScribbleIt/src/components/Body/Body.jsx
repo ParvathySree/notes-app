@@ -16,14 +16,10 @@ const Body = () => {
       <Header />
       <div className='notes-con'>
         {
-          notesArr.length > 0 && notesArr.map((note, index) => (
+          notesArr.length > 0 ? notesArr.map((note, index) => (
             <NoteCard note={note} key={note.id} color={colors[index % colors.length]}/>
-          ))
+          )) : <div>No data available.</div>
         }
-        {
-          notesArr.length ===0 && <div>No data available.</div>
-        }
-
       </div>
     </div>
   )
