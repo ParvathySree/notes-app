@@ -9,27 +9,7 @@ import { colors} from '../../assets/constants/constants';
 const Body = () => {
   const { notesArr, fetchNotes } = useNoteContext();
  
-  const getColor = () => {
-    return colors[Math.floor(Math.random() * colors.length)]
-  }
 
-  // const [notesArr, setNotesArr] = useState([]);
-
-  // useEffect(() => {
-  //   fetchNotes();
-  // }, [])
-
-
-  // const fetchNotes = async () => {
-  //   try {
-  //     const response = await axios.get(API_URL);
-  //     const data = await response.data.data;
-  //     setNotesArr(data)
-  //   }
-  //   catch (error) {
-  //     console.error(error)
-  //   }
-  // }
 
   return (
     <div className='body-con'>
@@ -37,8 +17,11 @@ const Body = () => {
       <div className='notes-con'>
         {
           notesArr.length > 0 && notesArr.map((note, index) => (
-            <NoteCard note={note} key={note.id} color={getColor}/>
+            <NoteCard note={note} key={note.id} color={colors[index % colors.length]}/>
           ))
+        }
+        {
+          notesArr.length ===0 && <div>No data available.</div>
         }
 
       </div>

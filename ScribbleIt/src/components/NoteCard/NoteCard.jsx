@@ -7,12 +7,14 @@ import { Button, Tooltip } from '@mui/material';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { API_URL } from '../../assets/constants/constants';
-import "./NoteCard.css"
 import axios from 'axios';
 import DeletePopUp from '../DeletePopUp/DeletePopUp';
 import { useState } from 'react';
 import PopUp from '../PopUp/PopUp';
 import { useNoteContext } from '../../../src/Contexts/NoteContext';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
+import "./NoteCard.css"
 const NoteCard = (props) => {
     const { note ,color} = props;
     const { fetchNotes } = useNoteContext();
@@ -43,10 +45,12 @@ const NoteCard = (props) => {
     const deleteNote = async () => {
         try {
             const response = await axios.delete(API_URL + "/" + `${deleteId}`);
+            toastr.success(response.data.message)
             fetchNotes();
             handleClose();
         }
         catch (error) {
+            toastr.error("Failed deleting the note")
             console.error(error)
         }
     }
@@ -60,10 +64,12 @@ const NoteCard = (props) => {
         try{
           const body =  {detail : noteValue}
           const response = await axios.put(API_URL+`/${editId}`,body);
+          toastr.success(response.data.message)
           fetchNotes(); 
           handleEditClose();
         }
         catch(error){
+          toastr.error("Failed editing the note")
           console.error(error)
         }
       }
@@ -71,9 +77,9 @@ const NoteCard = (props) => {
     return (
         <>
             <div>
-                <Card sx={{ width: 300, height: 200, display: "flex", flexFlow: "column" ,backgroundColor:color() }}>
+                <Card sx={{ width: 300, height: 150, display: "flex", flexFlow: "column" ,backgroundColor:color,borderRadius:5 }}>
                     <CardContent sx={{
-                        height: 170,
+                        height: 150,
                         overflow: 'hidden',
                     }}>
                         <Tooltip title={note.detail} placement="top">
@@ -84,7 +90,7 @@ const NoteCard = (props) => {
                                 whiteSpace: 'normal',
                                 display: '-webkit-box',
                                 WebkitBoxOrient: 'vertical',
-                                WebkitLineClamp: 6,
+                                WebkitLineClamp: 4,
                                 overflow: 'hidden',
                             }}
                             color="text.secondary"

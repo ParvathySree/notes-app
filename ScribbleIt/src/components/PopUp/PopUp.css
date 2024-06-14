@@ -8,3 +8,6 @@ textarea{
     height: 100px !important;
   }
   
+.error-border{
+    border-color: red;
+}

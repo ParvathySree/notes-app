@@ -6,30 +6,36 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { TextareaAutosize } from '@mui/base/TextareaAutosize';
-import { useState } from 'react';
-import { API_URL } from '../../assets/constants/constants';
+import { useState,useEffect } from 'react';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 import "./PopUp.css"
-import axios from 'axios';
-import { useEffect } from 'react';
 
 const PopUp = (props) => {
 
   const {open,handleClose,title,desc,handleAction,mode,noteToEdit} = props;
   const [note,setNote] = useState("");
+  const [error,setError] = useState(false);
 
   const handleChange = (value) => {
     setNote(value)
   }
 
   useEffect(() => {
+    setError(false);
     if(mode==="edit"){
       setNote(noteToEdit?.detail)
     }
   }, [])
   
   const handleSave = () => {
-    handleAction(note)
-    setNote("");
+    if(note.trim() !== ""){
+      handleAction(note)
+      mode === "add" && setNote("")
+    }else{
+      setError(true);
+      toastr.warning("Please enter your notes")
+    }
   }
  
   
@@ -52,7 +58,7 @@ const PopUp = (props) => {
           <DialogContentText>
             {desc}
           </DialogContentText>
-          <TextareaAutosize aria-label="Notes" minRows={5} maxLength={255} className="custom-textarea" value={note} onChange={(e)=>handleChange(e.target.value)}/>
+          <TextareaAutosize aria-label="Notes" minRows={5}  maxLength={255} className={error === true ?"error-border":"custom-textarea"} value={note} onChange={(e)=>handleChange(e.target.value)}/>
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={handleClose} sx={{color:"#000",borderColor:"#000",'&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.8)',borderColor:"#000" }}}>Cancel</Button>

@@ -4,6 +4,8 @@ import { IconButton } from '@mui/material';
 import './SideBar.css'
 import { useNoteContext } from '../../../src/Contexts/NoteContext';
 import PopUp from '../PopUp/PopUp';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 import axios from 'axios';
 import { API_URL } from '../../assets/constants/constants';
 
@@ -24,10 +26,12 @@ const SideBar = () => {
     try{
       const body =  {detail : note}
       const response = await axios.post(API_URL,body);
+      toastr.success(response.data.message)
       fetchNotes();
       handleClose();
     }
     catch(error){
+      toastr.error("Failed adding the note")
       console.error(error)
     }
   }

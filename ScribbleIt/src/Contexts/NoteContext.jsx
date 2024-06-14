@@ -14,7 +14,8 @@ export const NoteProvider = ({ children }) => {
     try {
       const response = await axios.get(API_URL);
       const data = response.data.data;
-      setNotesArr(data);
+      const sortedData = data.sort((a, b) => a.id - b.id);
+      setNotesArr(sortedData);
     } catch (error) {
       console.error(error);
     }
