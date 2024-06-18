@@ -9,15 +9,18 @@ export const useNoteContext = () => useContext(NoteContext);
 
 export const NoteProvider = ({ children }) => {
   const [notesArr, setNotesArr] = useState([]);
-
+  const [showLoader,setShowLoader] = useState(false)
   const fetchNotes = async () => {
+    setShowLoader(true)
     try {
       const response = await axios.get(API_URL);
       const data = response.data.data;
+      setShowLoader(false)
       const sortedData = data.sort((a, b) => a.id - b.id);
       setNotesArr(sortedData);
     } catch (error) {
       console.error(error);
+      setShowLoader(false)
     }
   };
 
@@ -26,7 +29,7 @@ export const NoteProvider = ({ children }) => {
   }, []);
 
   return (
-    <NoteContext.Provider value={{ notesArr, fetchNotes }}>
+    <NoteContext.Provider value={{ notesArr, fetchNotes,showLoader }}>
       {children}
     </NoteContext.Provider>
   );
