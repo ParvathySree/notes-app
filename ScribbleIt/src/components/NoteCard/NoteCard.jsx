@@ -104,8 +104,12 @@ const NoteCard = (props) => {
                         </Tooltip>
                     </CardContent>
                     <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
-                        <Button size="small" className='edit-con' sx={{ minWidth: 30 }} onClick={(e) => handleOpen(note.id)}><DeleteRoundedIcon /></Button>
+                        <Tooltip title="Delete">
+                            <Button size="small" className='edit-con' sx={{ minWidth: 30 }} onClick={(e) => handleOpen(note.id)}><DeleteRoundedIcon /></Button>
+                        </Tooltip>
+                        <Tooltip title="Edit">
                         <Button size="small" className='edit-con' sx={{ minWidth: 30 }} onClick={(e) => handleEditOpen(note.id)}><EditRoundedIcon /></Button>
+                        </Tooltip>
                     </CardActions>
                 </Card>
             </div>

@@ -28,10 +28,6 @@ const PopUp = (props) => {
     }
   }, [])
 
-  useEffect(() => {
-    console.log(error)
-  }, [error])
-  
   const closePopUp = () => {
     handleClose()
     setError(false)

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
-import { IconButton } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import './SideBar.css'
 import { useNoteContext } from '../../../src/Contexts/NoteContext';
 import PopUp from '../PopUp/PopUp';
@@ -45,9 +45,11 @@ const SideBar = () => {
     <div>
       <div></div>
       <div className='add-btn'>
+        <Tooltip title="Add">
         <IconButton className='icon-btn' onClick={handleOpen}>
           <AddCircleRoundedIcon className='icon add' />
         </IconButton>
+        </Tooltip>
       </div>
       <div>
         <PopUp open={open} handleClose={handleClose} title={"Add Note"} desc={"Please enter your note"} mode={"add"} handleAction={handleAdd}/>
