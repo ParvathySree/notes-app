@@ -8,10 +8,12 @@
   ],
   "routes": [
     {
+      "src": "/notes",
+      "dest": "/app.js"
+    },
+    {
       "src": "/(.*)",
-      "dest": "app.js"
+      "dest": "/app.js"
     }
   ]
 }
-
-  
