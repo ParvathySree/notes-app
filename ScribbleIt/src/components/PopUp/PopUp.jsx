@@ -27,7 +27,16 @@ const PopUp = (props) => {
       setNote(noteToEdit?.detail)
     }
   }, [])
+
+  useEffect(() => {
+    console.log(error)
+  }, [error])
   
+  const closePopUp = () => {
+    handleClose()
+    setError(false)
+  }
+
   const handleSave = () => {
     if(note.trim() !== ""){
       handleAction(note)
@@ -61,7 +70,7 @@ const PopUp = (props) => {
           <TextareaAutosize aria-label="Notes" minRows={5}  maxLength={255} className={error === true ?"error-border":"custom-textarea"} value={note} onChange={(e)=>handleChange(e.target.value)}/>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={handleClose} sx={{color:"#000",borderColor:"#000",'&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.8)',borderColor:"#000" }}}>Cancel</Button>
+          <Button variant="outlined" onClick={closePopUp} sx={{color:"#000",borderColor:"#000",'&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.8)',borderColor:"#000" }}}>Cancel</Button>
           <Button variant="contained" onClick={handleSave} sx={{color:"#fff",borderColor:"#000",backgroundColor:"#000",'&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.8)',borderColor:"#000" }}}>Save</Button>
         </DialogActions>
       </Dialog> 
