@@ -22,11 +22,9 @@ const editNote = async (detail,id) => {
 }
 
 const deleteNote = async(id) => {
-    console.log(id)
     const query = "DELETE FROM note_data WHERE id=$1 RETURNING *";
     const values =[id];
     const  result = await pool.query(query,values);
-    console.log(result)
     return result.rows;
 
 }
