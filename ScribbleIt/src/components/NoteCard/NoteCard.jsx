@@ -21,7 +21,8 @@ const NoteCard = (props) => {
     const [open, setOpen] = useState(false);
     const [deleteId,setDeleteId] = useState('');
     const [editOpen,setEditOpen] = useState(false);
-    const [editId,setEditId] = useState('')
+    const [editId,setEditId] = useState('');
+    const { setShowLoader } = useNoteContext();
     
     const handleOpen = (id) => {
         setOpen(true);
@@ -46,6 +47,7 @@ const NoteCard = (props) => {
         try {
             const response = await axios.delete(API_URL + "/" + `${deleteId}`);
             toastr.success(response.data.message)
+            setShowLoader(true)
             fetchNotes();
             handleClose();
         }
@@ -65,6 +67,7 @@ const NoteCard = (props) => {
           const body =  {detail : noteValue}
           const response = await axios.put(API_URL+`/${editId}`,body);
           toastr.success(response.data.message)
+          setShowLoader(true)
           fetchNotes(); 
           handleEditClose();
         }

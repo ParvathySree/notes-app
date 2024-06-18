@@ -11,7 +11,6 @@ export const NoteProvider = ({ children }) => {
   const [notesArr, setNotesArr] = useState([]);
   const [showLoader,setShowLoader] = useState(false)
   const fetchNotes = async () => {
-    setShowLoader(true)
     try {
       const response = await axios.get(API_URL);
       const data = response.data.data;
@@ -25,11 +24,12 @@ export const NoteProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    setShowLoader(true)
     fetchNotes();
   }, []);
 
   return (
-    <NoteContext.Provider value={{ notesArr, fetchNotes,showLoader }}>
+    <NoteContext.Provider value={{ notesArr, fetchNotes,showLoader,setShowLoader}}>
       {children}
     </NoteContext.Provider>
   );

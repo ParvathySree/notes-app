@@ -11,8 +11,7 @@ import { API_URL } from '../../assets/constants/constants';
 
 const SideBar = () => {
   const [open,setOpen] = useState(false);
-  const { fetchNotes } = useNoteContext();
-
+  const { fetchNotes ,setShowLoader} = useNoteContext();
 
   const handleOpen = () => {
     setOpen(true);
@@ -27,6 +26,7 @@ const SideBar = () => {
       const body =  {detail : note}
       const response = await axios.post(API_URL,body);
       toastr.success(response.data.message)
+      setShowLoader(true)
       fetchNotes();
       handleClose();
     }
