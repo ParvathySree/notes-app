@@ -16,10 +16,10 @@ const DeletePopUp = (props) => {
         onClose={handleClose}
         PaperProps={{
           style: {
-            minWidth: 300,
+            minWidth: 100,
             maxWidth: 500,
             width: '100%',
-            margin: 'auto'
+            margin: '30px'
           },
         }}
       >

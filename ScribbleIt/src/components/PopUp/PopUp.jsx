@@ -54,7 +54,7 @@ const PopUp = (props) => {
             minWidth: 300,
             maxWidth: 500,
             width: '100%',
-            margin: 'auto'
+            margin: '30px'
           },
         }}
       >
